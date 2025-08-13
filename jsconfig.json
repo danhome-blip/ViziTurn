@@ -1,4 +1,9 @@
 {
-  "compilerOptions": { "baseUrl": "." },
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
   "include": ["**/*"]
 }

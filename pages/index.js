@@ -15,8 +15,8 @@ export default function Home() {
       <img
         src="/logo.png"
         alt="hel pick social logo"
-        width={180}
-        height={180}
+        width={240}
+        height={240}
         style={{ display: 'block' }}
         onError={(e) => { e.currentTarget.style.display = 'none'; }}
       />

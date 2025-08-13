@@ -1,20 +1,32 @@
-export default function Landing(){
+export default function Home() {
   return (
-    <section>
-      <h1 style={{marginTop:6}}>Vizibilitate echitabilă. Fără algoritmi ascunși.</h1>
-      <p>Postările ajung la publicul relevant (Țară + Categorie) și expiră automat (1/3/7 zile), păstrând feed-ul curat.</p>
-      <ul>
-        <li>Targetare: Țară + Categorie</li>
-        <li>Expirare automată</li>
-        <li>Vizibilitate egală în feed</li>
-        <li>Raport: Click-uri</li>
-        <li>Filtru anti-irelevant</li>
-      </ul>
-      <p>
-        <a href="/feed" style={{border:'1px solid #111',background:'#111',color:'#fff',padding:'10px 14px',borderRadius:10,textDecoration:'none'}}>Vezi feed</a>
-        &nbsp;&nbsp;
-        <a href="/post">Publică acum</a>
-      </p>
-    </section>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+      backgroundColor: '#fdfaf5',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+    }}>
+      <img
+        src="/logo.png"
+        alt="Helpick Social"
+        style={{ width: '120px', height: 'auto', marginBottom: '20px' }}
+      />
+      <button
+        style={{
+          padding: '10px 20px',
+          fontSize: '16px',
+          backgroundColor: '#005f63',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer'
+        }}
+      >
+        Sign in
+      </button>
+    </div>
   );
 }

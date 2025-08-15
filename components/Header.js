@@ -13,7 +13,7 @@ export default function Header() {
       <div style={{maxWidth:960, margin:'0 auto', padding:'12px 20px',
                    display:'flex', alignItems:'center', justifyContent:'space-between'}}>
         <a href="/" style={{display:'flex', alignItems:'center', gap:10, textDecoration:'none'}}>
-          <img src="/viziturn.svg" alt="Viziturn" width="28" height="28" />
+          <img src="/logo.png?v=2" alt="Viziturn" width="28" height="28" />
           <strong style={{fontSize:18, color:'#0a0a0a'}}>Viziturn</strong>
         </a>
         <nav style={{display:'flex', gap:12}}>

@@ -3,12 +3,17 @@ import { useRouter } from 'next/router';
 import Header from './Header';
 
 export default function Layout({ children }) {
-  const { pathname } = useRouter();
-  const isHome = pathname === '/';          // Header doar pe landing
+  const router = useRouter();
+  const isHome = router.pathname === '/';
 
   return (
-    <div style={{ minHeight: '100vh', background: '#FFFFFF' /* fundal pagină alb */ }}>
-      {isHome && <Header />}                 {/* NU mai afișăm header pe alte pagini */}
+    <div
+      style={{
+        minHeight: '100vh',
+        background: '#F5EFEA' // alb murdar uniform pe TOT ecranul
+      }}
+    >
+      {isHome && <Header />} {/* Header DOAR pe landing */}
       <main>{children}</main>
     </div>
   );

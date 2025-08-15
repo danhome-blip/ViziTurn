@@ -12,10 +12,26 @@ export default function Header() {
     <header style={{position:'sticky', top:0, zIndex:10, background:'#fff', borderBottom:'1px solid #eee'}}>
       <div style={{maxWidth:960, margin:'0 auto', padding:'12px 20px',
                    display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-        <a href="/" style={{display:'flex', alignItems:'center', gap:10, textDecoration:'none'}}>
-          <img src="/logo.png?v=2" alt="Viziturn" width="28" height="28" />
-          <strong style={{fontSize:18, color:'#0a0a0a'}}>Viziturn</strong>
-        </a>
+        <a 
+  href="/" 
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    textDecoration: 'none',
+    padding: '4px 0'
+  }}
+>
+  <img 
+    src="/logo.png?v=2" 
+    alt="ViziTurn" 
+    style={{ width: '32px', height: '32px', objectFit: 'contain' }}
+  />
+  <strong style={{ fontSize: '20px', color: '#0a0a0a', fontWeight: '600' }}>
+    ViziTurn
+  </strong>
+</a>
+
         <nav style={{display:'flex', gap:12}}>
           <a href="/about" style={link}>Despre Viziturn</a>
           <a href="/rules" style={link}>Reguli & Disclaimer</a>

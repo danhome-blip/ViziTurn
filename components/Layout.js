@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import Header from './Header';
 
 export default function Layout({ children }) {
-  const router = useRouter();
-  const isHome = router.pathname === '/';
+  const { pathname } = useRouter();
+  const isHome = pathname === '/'; // afișăm Header doar pe landing
 
   return (
     <div
@@ -13,7 +13,7 @@ export default function Layout({ children }) {
         background: '#F0EDEB', // alb murdar (stil WhatsApp)
       }}
     >
-      {isHome && <Header />}  {/* Header DOAR pe landing */}
+      {isHome && <Header />}   {/* Header DOAR pe / */}
       <main>{children}</main>
     </div>
   );

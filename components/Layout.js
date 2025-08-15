@@ -1,18 +1,19 @@
 // components/Layout.js
+import { useRouter } from 'next/router';
 import Header from './Header';
 
 export default function Layout({ children }) {
+  const router = useRouter();
+  const isHome = router.pathname === '/';
+
   return (
     <div
       style={{
         minHeight: '100vh',
-        background: '#FBF6EF' // păstrez culoarea ta de fundal
+        background: '#F0EDEB', // alb murdar (stil WhatsApp)
       }}
     >
-      {/* Header-ul apare pe TOATE paginile, inclusiv Landing */}
-      <Header />
-
-      {/* Aici se inserează conținutul paginii curente (index, about, rules, etc.) */}
+      {isHome && <Header />}  {/* Header DOAR pe landing */}
       <main>{children}</main>
     </div>
   );

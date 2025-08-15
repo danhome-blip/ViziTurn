@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 
-export default function About() {
+export default function Rules() {
   return (
     <Layout>
       <main style={{maxWidth:860, margin:'40px auto', padding:'0 20px'}}>

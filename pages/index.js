@@ -1,60 +1,47 @@
-// components/Header.js
-export default function Header() {
+// pages/index.js
+import Layout from '../components/Layout';
+
+export default function Home() {
   return (
-    <header
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
-        background: '#F0EDEB', // alb murdar (WhatsApp style)
-        borderBottom: '1px solid #ddd', // linie discretă
-      }}
-    >
-      <style jsx>{`
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 10px 20px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        .brand {
-          display: flex;
-          align-items: center;
-        }
-
-        .brand img {
-          height: 40px;
-          width: auto;
-        }
-
-        .nav {
-          display: flex;
-          gap: 15px;
-        }
-
-        .nav a {
-          text-decoration: none;
-          color: #333;
-          font-weight: 500;
-        }
-
-        .nav a:hover {
-          color: #000;
-        }
-      `}</style>
-
-      <div className="container">
-        <div className="brand">
-          <img src="/logo.png" alt="ViziTurn" />
+    <Layout>
+      <div style={{
+        maxWidth: 960,
+        margin: '60px auto',
+        padding: '0 20px',
+        textAlign: 'center'
+      }}>
+        {/* Logo mare */}
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 14,
+          padding: 24,
+          background: '#fff',
+          borderRadius: 12,
+          boxShadow: '0 1px 3px rgba(0,0,0,0.06)'
+        }}>
+          <img src="/logo.png?v=3" alt="ViziTurn" width="56" height="56" style={{ objectFit: 'contain' }} />
+          <h1 style={{ margin: 0, fontSize: 40, color: '#16323A', fontWeight: 700 }}>ViziTurn</h1>
         </div>
-        <nav className="nav">
-          <a href="/despre">Despre Viziturn</a>
-          <a href="/reguli">Reguli & Disclaimer</a>
-        </nav>
+
+        {/* Buton Sign in */}
+        <div style={{ marginTop: 36 }}>
+          <a
+            href="/login"
+            style={{
+              display: 'inline-block',
+              background: '#136a63', // verdele tău
+              color: '#fff',
+              padding: '12px 24px',
+              borderRadius: 12,
+              textDecoration: 'none',
+              fontWeight: 600
+            }}
+          >
+            Sign in
+          </a>
+        </div>
       </div>
-    </header>
+    </Layout>
   );
 }

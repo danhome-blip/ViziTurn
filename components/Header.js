@@ -10,14 +10,14 @@ export default function Header() {
 
   return (
     <header style={{position:'sticky', top:0, zIndex:10, background:'#fff', borderBottom:'1px solid #eee'}}>
-      <div style={{maxWidth:960, margin:'0 auto', padding:'12px 20px',
+      <div style={{maxWidth:1200, margin:'0 auto', padding:'12px 20px',
                    display:'flex', alignItems:'center', justifyContent:'space-between'}}>
         <a 
   href="/" 
   style={{
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
+    gap: '16px',
     textDecoration: 'none',
     padding: '4px 0'
   }}
@@ -32,7 +32,7 @@ export default function Header() {
   </strong>
 </a>
 
-        <nav style={{display:'flex', gap:12}}>
+        <nav style={{display:'flex', gap:16}}>
           <a href="/about" style={link}>Despre Viziturn</a>
           <a href="/rules" style={link}>Reguli & Disclaimer</a>
         </nav>

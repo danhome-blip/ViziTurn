@@ -1,44 +1,66 @@
-import Layout from '../components/Layout';
-
+// pages/index.js
 export default function Home() {
   return (
-    <Layout>
-      <div style={{ maxWidth: 880, margin: '16px auto 0', padding: '0 16px' }}>
-        {/* CARD LOGO + TITLU */}
-        <div
+    <main
+      style={{
+        maxWidth: 960,
+        margin: '120px auto 80px',
+        padding: '0 20px',
+        textAlign: 'center',
+      }}
+    >
+      {/* Card cu logo + titlu */}
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 16,
+          padding: '24px 28px',
+          background: '#ffffff',
+          borderRadius: 16,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
+        }}
+      >
+        <img
+          src="/logo.png"
+          alt="ViziTurn"
+          width="56"
+          height="56"
+          style={{ display: 'block', borderRadius: 8 }}
+        />
+        <h1
           style={{
-            background: '#fff',
-            borderRadius: 16,
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-            padding: 24
+            margin: 0,
+            fontSize: 'clamp(28px, 6vw, 56px)',
+            lineHeight: 1.1,
+            letterSpacing: 0.2,
+            color: '#17333a',
+            fontWeight: 800,
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <img src="/logo.png?v=3" alt="ViziTurn" width="56" height="56" />
-            <h1 style={{ margin: 0, fontSize: 48, lineHeight: 1.1, color: '#16333A' }}>
-              ViziTurn
-            </h1>
-          </div>
-        </div>
-
-        {/* BUTON SIGN IN */}
-        <div style={{ textAlign: 'center', marginTop: 24 }}>
-          <a
-            href="/login"
-            style={{
-              display: 'inline-block',
-              padding: '12px 24px',
-              background: '#126E64',
-              color: '#fff',
-              borderRadius: 12,
-              textDecoration: 'none',
-              fontWeight: 600
-            }}
-          >
-            Sign in
-          </a>
-        </div>
+          ViziTurn
+        </h1>
       </div>
-    </Layout>
+
+      {/* Buton Sign in */}
+      <div>
+        <a
+          href="/login"
+          style={{
+            display: 'inline-block',
+            marginTop: 32,
+            padding: '12px 28px',
+            background: '#0f6b60',
+            color: '#fff',
+            borderRadius: 12,
+            textDecoration: 'none',
+            fontWeight: 700,
+            fontSize: 18,
+          }}
+        >
+          Sign in
+        </a>
+      </div>
+    </main>
   );
 }

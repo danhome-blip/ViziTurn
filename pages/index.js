@@ -1,42 +1,60 @@
-export default function Home() {
+// components/Header.js
+export default function Header() {
   return (
-    <main
+    <header
       style={{
-        minHeight: 'calc(100vh - 0px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        gap: 24,
-        padding: 24,
+        position: 'sticky',
+        top: 0,
+        zIndex: 10,
+        background: '#F0EDEB', // alb murdar (WhatsApp style)
+        borderBottom: '1px solid #ddd', // linie discretă
       }}
     >
-      {/* Logo-ul din /public/logo.png  */}
-      <img
-        src="/logo.png"
-        alt="hel pick social logo"
-        width={240}
-        height={240}
-        style={{ display: 'block' }}
-        onError={(e) => { e.currentTarget.style.display = 'none'; }}
-      />
+      <style jsx>{`
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
 
-      <a
-        href="/login"
-        style={{
-          display: 'inline-block',
-          padding: '12px 24px',
-          borderRadius: 8,
-          background: '#0f6a6a',      // verde-albăstrui din logo
-          color: 'white',
-          textDecoration: 'none',
-          fontWeight: 600,
-          fontSize: 16,
-          boxShadow: '0 2px 6px rgba(0,0,0,0.08)'
-        }}
-      >
-        Sign in
-      </a>
-    </main>
+        .brand {
+          display: flex;
+          align-items: center;
+        }
+
+        .brand img {
+          height: 40px;
+          width: auto;
+        }
+
+        .nav {
+          display: flex;
+          gap: 15px;
+        }
+
+        .nav a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+        }
+
+        .nav a:hover {
+          color: #000;
+        }
+      `}</style>
+
+      <div className="container">
+        <div className="brand">
+          <img src="/logo.png" alt="ViziTurn" />
+        </div>
+        <nav className="nav">
+          <a href="/despre">Despre Viziturn</a>
+          <a href="/reguli">Reguli & Disclaimer</a>
+        </nav>
+      </div>
+    </header>
   );
 }

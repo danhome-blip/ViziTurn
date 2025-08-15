@@ -2,9 +2,9 @@
 export default function Header() {
   const link = {
     padding: '10px 14px',
-    border: '1px solid #ddd',
-    borderRadius: '10px',
-    color: '#0a0a0a',
+    border: '1px solid #d9cdc7',
+    borderRadius: '12px',
+    color: '#2b2b2b',
     textDecoration: 'none'
   };
 
@@ -14,34 +14,24 @@ export default function Header() {
         position: 'sticky',
         top: 0,
         zIndex: 10,
-        background: '#F5EFEA',          // aceeași culoare ca pagina
-        borderBottom: '1px solid #E8E0DB',
-        padding: '10px 0',               // mai puțin înalt
-        marginBottom: '12px'             // spațiu mic sub header
+        background: '#ECE5DD', // alb murdar (doar header)
+        borderBottom: '1px solid #e0d7d2'
       }}
     >
       <div
         style={{
           maxWidth: 960,
           margin: '0 auto',
-          padding: '0 16px',
+          padding: '14px 20px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: 12
+          gap: 16
         }}
       >
-        <a
-          href="/"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            textDecoration: 'none'
-          }}
-        >
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
           <img src="/logo.png?v=3" alt="ViziTurn" width="28" height="28" />
-          <strong style={{ fontSize: 18, color: '#0a0a0a' }}>ViziTurn</strong>
+          <strong style={{ fontSize: 20, color: '#1b1f22' }}>ViziTurn</strong>
         </a>
 
         <nav style={{ display: 'flex', gap: 12 }}>

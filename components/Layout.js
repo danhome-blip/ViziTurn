@@ -4,16 +4,11 @@ import Header from './Header';
 
 export default function Layout({ children }) {
   const { pathname } = useRouter();
-  const isHome = pathname === '/'; // afișăm Header doar pe landing
+  const isHome = pathname === '/';          // Header doar pe landing
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: '#F0EDEB', // alb murdar (stil WhatsApp)
-      }}
-    >
-      {isHome && <Header />}   {/* Header DOAR pe / */}
+    <div style={{ minHeight: '100vh', background: '#FFFFFF' /* fundal pagină alb */ }}>
+      {isHome && <Header />}                 {/* NU mai afișăm header pe alte pagini */}
       <main>{children}</main>
     </div>
   );

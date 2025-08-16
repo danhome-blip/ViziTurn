@@ -1,39 +1,86 @@
+import Header from '../components/Header';
+import PostCard from '../components/PostCard';
 import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabase';
 
-const COUNTRIES=['RO','IT','US','HK','DE','FR','ES','UK'];
-const CATS=['arta','muzica','carte','ong','eveniment','educatie'];
+export default function Feed({ user }) {
+  const [posts, setPosts] = useState([]);
+  const [preferences, setPreferences] = useState([]);
 
-export default function Feed(){
-  const [country,setCountry]=useState('RO'); const [category,setCategory]=useState('arta');
-  const [posts,setPosts]=useState([]); const [loading,setLoading]=useState(false);
+  // Încarcă preferințele utilizatorului
+  useEffect(() => {
+    const loadPreferences = async () => {
+      if (!user) return;
 
-  async function load(){ setLoading(true);
-    const r=await fetch(`/api/posts/feed?country=${country}&category=${category}`); const j=await r.json();
-    setPosts(j.posts||[]); setLoading(false);
-  }
-  useEffect(()=>{ load(); },[country,category]);
+      const { data, error } = await supabase
+        .from('user_preferences')
+        .select('categories')
+        .eq('user_id', user.id)
+        .single();
+
+      if (data) {
+        setPreferences(data.categories);
+      }
+    };
+
+    loadPreferences();
+  }, [user]);
+
+  // Încarcă postările active și filtrează după preferințe
+  useEffect(() => {
+    const loadPosts = async () => {
+      if (!user || preferences.length === 0) return;
+
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .gte('expires_at', new Date().toISOString())
+        .order('created_at', { ascending: false });
+
+      if (data) {
+        // Filtrăm doar postările din categoriile alese
+        const filtered = data.filter(post => preferences.includes(post.category));
+        setPosts(filtered);
+      }
+    };
+
+    // Așteaptă puțin pentru a da timp încărcării preferințelor
+    const timer = setTimeout(loadPosts, 800);
+    return () => clearTimeout(timer);
+  }, [user, preferences]);
 
   return (
-    <div>
-      <h2>Feed</h2>
-      <div style={{display:'flex',gap:8,flexWrap:'wrap',margin:'8px 0 16px'}}>
-        <select value={country} onChange={e=>setCountry(e.target.value)}>{COUNTRIES.map(c=><option key={c}>{c}</option>)}</select>
-        <select value={category} onChange={e=>setCategory(e.target.value)}>{CATS.map(c=><option key={c}>{c}</option>)}</select>
-        <button onClick={load} disabled={loading}>{loading?'...':'Actualizează'}</button>
-      </div>
-      {!posts.length && <p style={{opacity:.7}}>Nu sunt postări pentru filtrul ales.</p>}
-      <ul style={{listStyle:'none',padding:0,display:'grid',gap:12}}>
-        {posts.map(p=>(
-          <li key={p.id} style={{border:'1px solid #eee',borderRadius:12,padding:12}}>
-            <div style={{fontSize:12,opacity:.7}}>
-              {p.country} • {p.category} • {p.type || 'standard'}{p.publisher?` • ${p.publisher}`:''} • publicat {new Date(p.published_at).toLocaleString()} • expiră {new Date(p.expires_at).toLocaleString()}
-            </div>
-            <h3 style={{margin:'6px 0 10px'}}>{p.title}</h3>
-            <a className="btn" href={`/api/r/${p.id}`} target="_blank" rel="noreferrer" style={{textDecoration:'none'}}>Deschide</a>
-            <div style={{fontSize:12,opacity:.7,marginTop:6}}>Clicks: {p.clicks_count}</div>
-          </li>
-        ))}
-      </ul>
+    <div className="min-h-screen bg-gray-50">
+      <Header user={user} />
+      
+      <main className="max-w-4xl mx-auto px-4 py-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">Feedul tău</h2>
+        
+        {preferences.length === 0 ? (
+          <p className="text-gray-600">
+            Nu ai ales încă categoriile de interes. <br />
+            <Link href="/post" className="text-primary font-medium hover:underline">
+              Mergi la postare pentru a alege.
+            </Link>
+          </p>
+        ) : (
+          <p className="text-gray-600 mb-6">
+            Vezi doar: <strong>{preferences.join(', ')}</strong>
+          </p>
+        )}
+
+        <div className="space-y-5">
+          {posts.length === 0 ? (
+            <p className="text-gray-500 text-center py-8">
+              Niciun conținut disponibil acum.
+            </p>
+          ) : (
+            posts.map(post => (
+              <PostCard key={post.id} post={post} />
+            ))
+          )}
+        </div>
+      </main>
     </div>
   );
 }

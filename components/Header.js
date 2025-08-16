@@ -1,43 +1,40 @@
-// components/Header.js
-export default function Header() {
-  const link = {
-    padding: '10px 14px',
-    border: '1px solid #d9cdc7',
-    borderRadius: '12px',
-    color: '#2b2b2b',
-    textDecoration: 'none'
+import { supabase } from '../lib/supabase';
+
+export default function Header({ user }) {
+  const handleLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'http://localhost:3000/feed',
+      },
+    });
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
   };
 
   return (
-    <header
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
-        background: '#ECE5DD', // alb murdar (doar header)
-        borderBottom: '1px solid #e0d7d2'
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 960,
-          margin: '0 auto',
-          padding: '14px 20px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 16
-        }}
-      >
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-          <img src="/logo.png?v=3" alt="ViziTurn" width="28" height="28" />
-          <strong style={{ fontSize: 20, color: '#1b1f22' }}>ViziTurn</strong>
-        </a>
-
-        <nav style={{ display: 'flex', gap: 12 }}>
-          <a href="/about" style={link}>Despre Viziturn</a>
-          <a href="/rules" style={link}>Reguli & Disclaimer</a>
-        </nav>
+    <header className="bg-white shadow-sm border-b">
+      <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 className="text-xl font-bold text-primary">ViziTurn</h1>
+        <div>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="text-gray-600 hover:text-gray-800 text-sm font-medium"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={handleLogin}
+              className="bg-primary text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+            >
+              Sign in with Google
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );

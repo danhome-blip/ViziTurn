@@ -1,40 +1,77 @@
-import Header from '../components/Header';
-import Link from 'next/link';
-
-export default function Home({ user }) {
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header user={user} />
-      
-      <main className="max-w-4xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">ViziTurn</h1>
-          <p className="text-xl text-gray-600">
-            Vizibilitate garantată pentru creatori.
-          </p>
+    <>
+      <header className="border-b">
+        <div className="container flex h-14 items-center justify-between">
+          <a href="/" className="font-semibold">Viziturn</a>
+          <nav className="flex items-center gap-4 text-sm">
+            <a href="/about" className="hover:underline">Despre</a>
+            <a href="/rules" className="hover:underline">Reguli</a>
+            <a href="/login" className="btn-primary">Intră în cont</a>
+          </nav>
         </div>
+      </header>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <Link href="/feed">
-            <div className="bg-white p-6 rounded-lg shadow border border-gray-100 hover:shadow-lg transition text-center cursor-pointer">
-              <h3 className="text-lg font-semibold mb-2">Vezi conținut</h3>
-              <p className="text-gray-500 text-sm">Doar ce alegi tu. Fără spam.</p>
+      <main>
+        {/* Hero */}
+        <section className="container py-20">
+          <div className="grid items-center gap-10 md:grid-cols-2">
+            <div>
+              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+                Postezi. <span className="text-brand">Toți văd.</span><br/> Fără algoritmi care te ascund.
+              </h1>
+              <p className="mt-4 text-lg text-zinc-600">
+                Viziturn livrează fiecare postare către toți urmăritorii — pe rând, corect.
+                Ai rapoarte reale: afișări și clickuri. Fără „vanity metrics”.
+              </p>
+              <div className="mt-8 flex gap-3">
+                <a href="/login" className="btn-primary">Începe gratuit</a>
+                <a href="/about" className="btn-ghost">Cum funcționează</a>
+              </div>
             </div>
-          </Link>
-
-          <Link href="/post">
-            <div className="bg-white p-6 rounded-lg shadow border border-gray-100 hover:shadow-lg transition text-center cursor-pointer">
-              <h3 className="text-lg font-semibold mb-2">Postează</h3>
-              <p className="text-gray-500 text-sm">Oferă-ți visibilitate doar celor interesați.</p>
+            <div className="card">
+              <div className="mb-3 text-sm text-zinc-500">Previzualizare rotație</div>
+              <div className="grid grid-cols-3 gap-3">
+                {['Tura 1','Tura 2','Tura 3','Tura 4','Tura 5','Tura 6'].map(x => (
+                  <div key={x} className="rounded-lg bg-zinc-50 p-4 text-center">{x}</div>
+                ))}
+              </div>
+              <p className="mt-4 text-xs text-zinc-500">
+                Postările intră în rotație și primesc expunere egală.
+              </p>
             </div>
-          </Link>
-
-          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 text-center opacity-80">
-            <h3 className="text-lg font-semibold mb-2">Fără cont?</h3>
-            <p className="text-gray-500 text-sm">Autentifică-te cu Google – e rapid și sigur.</p>
           </div>
-        </div>
+        </section>
+
+        {/* Features */}
+        <section className="container py-12">
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              ['Vizibilitate egală','Fiecare postare intră în rotație; nimeni nu e coborât de algoritm.'],
+              ['Măsurare clară','Afișări reale și clickuri, nu doar impresii vagi.'],
+              ['Fără spam','Reguli simple și moderare ca să păstrăm scena curată.'],
+            ].map(([t, d]) => (
+              <div key={t} className="card">
+                <h3 className="text-lg font-medium">{t}</h3>
+                <p className="mt-2 text-sm text-zinc-600">{d}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="container py-16 text-center">
+          <h2 className="text-3xl font-semibold">E rândul tău să fii văzut.</h2>
+          <p className="mt-3 text-zinc-600">Creează-ți contul și publică prima postare în 60 de secunde.</p>
+          <a href="/login" className="mt-6 inline-block btn-primary">Creează cont</a>
+        </section>
       </main>
-    </div>
+
+      <footer className="mt-20 border-t">
+        <div className="container py-10 text-sm text-zinc-600">
+          © {new Date().getFullYear()} Viziturn • <a className="hover:underline" href="/rules">Reguli & Disclaimer</a>
+        </div>
+      </footer>
+    </>
   );
 }

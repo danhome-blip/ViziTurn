@@ -1,6 +1,7 @@
+import React from 'react';
 export default function Home() {
   return (
-    <>
+    <div>
       <header className="border-b">
         <div className="container flex h-14 items-center justify-between">
           <a href="/" className="font-semibold">Viziturn</a>
@@ -11,14 +12,12 @@ export default function Home() {
           </nav>
         </div>
       </header>
-
       <main>
-        {/* Hero */}
         <section className="container py-20">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div>
               <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-                Postezi. <span className="text-brand">Toți văd.</span><br/> Fără algoritmi care te ascund.
+                Postezi. <span className="text-blue-500">Toți văd.</span><br/> Fără algoritmi care te ascund.
               </h1>
               <p className="mt-4 text-lg text-zinc-600">
                 Viziturn livrează fiecare postare către toți urmăritorii — pe rând, corect.
@@ -36,14 +35,10 @@ export default function Home() {
                   <div key={x} className="rounded-lg bg-zinc-50 p-4 text-center">{x}</div>
                 ))}
               </div>
-              <p className="mt-4 text-xs text-zinc-500">
-                Postările intră în rotație și primesc expunere egală.
-              </p>
+              <p className="mt-4 text-xs text-zinc-500">Postările intră în rotație și primesc expunere egală.</p>
             </div>
           </div>
         </section>
-
-        {/* Features */}
         <section className="container py-12">
           <div className="grid gap-6 md:grid-cols-3">
             {[
@@ -58,20 +53,17 @@ export default function Home() {
             ))}
           </div>
         </section>
-
-        {/* CTA */}
         <section className="container py-16 text-center">
           <h2 className="text-3xl font-semibold">E rândul tău să fii văzut.</h2>
           <p className="mt-3 text-zinc-600">Creează-ți contul și publică prima postare în 60 de secunde.</p>
           <a href="/login" className="mt-6 inline-block btn-primary">Creează cont</a>
         </section>
       </main>
-
       <footer className="mt-20 border-t">
         <div className="container py-10 text-sm text-zinc-600">
-          © {new Date().getFullYear()} Viziturn • <a className="hover:underline" href="/rules">Reguli & Disclaimer</a>
+          © {new Date().getFullYear()} Viziturn • <a className="hover:underline" href="/rules">Reguli &amp; Disclaimer</a>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
